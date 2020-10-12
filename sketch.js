@@ -2,6 +2,7 @@ var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
 var packageBody,ground;
 var engine,world;
 var redBottom,redRight,redLeft;
+var redBottomSprite,redRightSprite,redLeftSprite;
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -30,12 +31,27 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
+	redBottomSprite=createSprite(360,650,200,20);
+	redBottomSprite.shapeColor='red';
+
+	redRightSprite=createSprite(460,610,20,100);
+	redRightSprite.shapeColor='red';
+
+	redLeftSprite=createSprite(260,610,20,100);
+	redLeftSprite.shapeColor='red';
+
 	
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0, isStatic:true});
 	World.add(world, packageBody);
 
 	redBottom = Bodies.rectangle(360,650,200,20);
 	World.add(world,redBottom);
+
+	redRight = Bodies.rectangle(460,610,20,100);
+	World.add(world,redRight);
+
+	redLeft = Bodies.rectangle(260,610,20,100);
+	World.add(world,redLeft);
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
@@ -52,7 +68,12 @@ function draw() {
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
-  rect(360,650,200,20);
+  redBottomSprite.x=redBottom.position.x
+  redBottomSprite.y=redBottom.position.y
+  redRightSprite.x=redRight.position.x
+  redRightSprite.y=redRight.position.y
+  redLeftSprite.x=redLeft.position.x
+  redLeftSprite.y=redLeft.position.y
   drawSprites();
   
 }
